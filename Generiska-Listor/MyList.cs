@@ -29,6 +29,8 @@ namespace Generiska_Listor
         {
             get
             {
+                if (index >= list.Count)
+                    throw new IndexOutOfRangeException();
                 return list[index];
             }
         }
