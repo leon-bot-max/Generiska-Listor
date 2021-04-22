@@ -34,7 +34,10 @@ namespace Generiska_Listor
 
             if (First != null)
                 newNode.Next = First;
-
+            if (Last == null)
+            {
+                Last = newNode;
+            }
             First = newNode;
 
             Node<T> n = First;
@@ -47,14 +50,29 @@ namespace Generiska_Listor
             Count++;
         }
 
-        public void AddLast()
+        public void AddLast(T data)
         {
-
+            Node<T> newNode = new Node<T>();
+            newNode.Value = data;
+            if (Last != null)
+            {
+                Last.Next = newNode;
+                newNode.Previous = Last;
+            }
+            Last = newNode;
         }
 
         public void RemoveLast()
         {
-
+            if (Last.Previous != null)
+            {
+                Last.Previous.Next = null;
+                Last = Last.Previous;
+            }
+            else
+            {
+                Last = null;
+            }
         }
         public T this[int index]
         {
