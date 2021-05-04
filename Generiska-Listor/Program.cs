@@ -10,6 +10,20 @@ namespace Generiska_Listor
     {
         static void Main(string[] args)
         {
+
+
+            MyList<string> list = new MyList<string>();
+            list.AddFirst("först");
+            list.AddFirst("två");
+            list.AddLast("tre");
+
+            list.RemoveAt(5);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list[i].ToString() + " " + i);
+            }
+            Console.ReadLine();
         }
     }
 }
