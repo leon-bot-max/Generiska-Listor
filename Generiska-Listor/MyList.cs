@@ -8,45 +8,88 @@ namespace Generiska_Listor
 {
     class MyList<T>
     {
-        List<T> list = new List<T>();
+        T[] list = new T[0];
 
         public int Count   
         {
-            get { return list.Count; }   
+            get { return list.Length; }   
         }
 
         public void AddFirst(T data)
         {
-            list.Insert(0, data);
+            InsertAt(0, data);
         }
 
         public void RemoveFirst()
         {
-            list.RemoveAt(0);
+            RemoveAt(0);
         }
         public void AddLast(T data)
         {
-            list.Add(data);
+            InsertAt(Count, data);
         }
 
         public void RemoveLast()
         {
-            list.RemoveAt(list.Count - 1);
+            RemoveAt(Count - 1);
         }
 
         public void InsertAt(int index, T data)
         {
-            list.Insert(index, data);
+
+            if (index >= list.Length || index < 0)
+                throw new IndexOutOfRangeException();
+
+            T[] newList = new T[Count + 1];
+
+            for (int i = 0; i < newList.Length; i++)
+            {
+                if (i == index)
+                {
+                    newList[i] = data;
+                }
+                else if (i < index)
+                {
+                    newList[i] = list[i];
+                }
+                else
+                {
+                    newList[i] = list[i-1];
+                }
+            }
+
+            list = newList;
+
         }
         public void RemoveAt(int index)
         {
-            list.RemoveAt(index);
+            if (index > list.Length || index < 0 || Count <= 0)
+                throw new IndexOutOfRangeException();
+
+            T[] newList = new T[Count - 1];
+
+            for (int i = 0; i < newList.Length; i++)
+            {
+                if (i != index)
+                {
+                    if (i < index)
+                    {
+                        newList[i] = list[i];
+                    }
+                    else
+                    {
+                        newList[i] = list[i + 1];
+                    }
+                }
+            }
+
+            list = newList;
         }
         public T this[int index]
         {
             get
             {
-                if (index >= list.Count)
+                if (index >= list.Length || index < 0)
                     throw new IndexOutOfRangeException();
                 return list[index];
             }
