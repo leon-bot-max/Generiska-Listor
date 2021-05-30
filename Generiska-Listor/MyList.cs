@@ -37,7 +37,7 @@ namespace Generiska_Listor
         public void InsertAt(int index, T data)
         {
 
-            if (index >= list.Length || index < 0)
+            if (index > list.Length || index < 0)
                 throw new IndexOutOfRangeException();
 
             T[] newList = new T[Count + 1];
@@ -63,7 +63,7 @@ namespace Generiska_Listor
         }
         public void RemoveAt(int index)
         {
-            if (index > list.Length || index < 0 || Count <= 0)
+            if (index >= list.Length || index < 0)
                 throw new IndexOutOfRangeException();
 
             T[] newList = new T[Count - 1];

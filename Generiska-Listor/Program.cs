@@ -14,10 +14,9 @@ namespace Generiska_Listor
 
             MyList<string> list = new MyList<string>();
             list.AddFirst("först");
-            list.AddFirst("två");
-            list.AddLast("tre");
 
-            list.RemoveAt(5);
+
+            //list.RemoveAt(5);
 
             for (int i = 0; i < list.Count; i++)
             {
